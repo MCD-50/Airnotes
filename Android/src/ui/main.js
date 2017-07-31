@@ -47,14 +47,14 @@ class MainPage extends Component {
 		this.setState({ title: Store.title });
 		Store.on('change:notes', (notes) => {
 			this.setState({
-				notesDataSource: Store.title == Type.NOTE ? ds.cloneWithRows(notes.slice()) : ds.cloneWithRows([]),
+				notesDataSource: ds.cloneWithRows(notes.slice()),
 				notes: notes.slice()
 			});
 		});
 
 		Store.on('change:tasks', (tasks) => {
 			this.setState({
-				tasksDataSource: Store.title == Type.TASK ? ds.cloneWithRows(tasks.slice()) : ds.cloneWithRows([]),
+				tasksDataSource: ds.cloneWithRows(tasks.slice()),
 				tasks: tasks.slice(),
 			});
 		});
@@ -80,7 +80,7 @@ class MainPage extends Component {
 			.then((size) => {
 				const page = Page.EDIT_PAGE;
 				const data = {
-					note: item,
+					item: item,
 					callback: this.callback,
 					textSize: size ? size : 16,
 				};
@@ -122,10 +122,10 @@ class MainPage extends Component {
 			[{
 				text: 'OK',
 				onPress: () => {
-					DatabaseHelper.removeItemById(items[rowId].id, result => {
+					DatabaseHelper.removeItemById(items[rowId]._id, result => {
 						rowMap[`${secId}${rowId}`].closeRow();
 						items.splice(rowId, 1);
-						if (Store.title == Type.TASK) {
+						if (title == Type.TASK) {
 							Fluxify.doAction("updateTasks", items)
 						} else {
 							Fluxify.doAction("updateNotes", items)

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component, PropTypes, DeviceEventEmitter } from "react";
 import { BackAndroid, View, Text, TouchableOpacity, KeyboardAvoidingView, Alert } from "react-native";
 
 import { Toolbar, ActionButton, Avatar } from "react-native-material-component";
@@ -76,7 +76,7 @@ class EditPage extends Component {
 			endsIn: 'Deadline not specified.',
 
 			isDateTimePickerVisible: false,
-			//showKeyboardSpacer: this.props.appState === 'initial',
+			showKeyboardSpacer: this.props.appState === 'initial',
 
 			icons: {
 				bold: "all-inclusive",
@@ -84,9 +84,8 @@ class EditPage extends Component {
 				INST_LINK: "insert-link",
 				ends: 'event',
 			},
+			keyboardSpace: 0,
 		};
-
-
 
 
 		this.addBackEvent = this.addBackEvent.bind(this);
@@ -146,6 +145,7 @@ class EditPage extends Component {
 	componentWillUnmount() {
 		this.removeBackEvent();
 	}
+
 
 	shouldComponentUpdate(nextProps, nextState) {
 		if (this.props != nextProps) {
@@ -295,7 +295,6 @@ class EditPage extends Component {
 
 	render() {
 		const _x = this.state.itemType == Type.NOTE ? NOTE_TYPE : TASK_TYPE;
-
 		return (
 			<Container>
 				<Toolbar
@@ -309,6 +308,8 @@ class EditPage extends Component {
 					style={styles.edit_page_rich_text_editor}
 					contentPlaceholder="Start typing from here..."
 					ref={r => this.richtext = r}
+					hideKeyboardAccessoryView={false}
+					keyboardDisplayRequiresUserAction={true}
 					initialContentHTML={this.state.html}
 					hiddenTitle={true}
 					customCSS={_customCSS} />
@@ -325,6 +326,8 @@ class EditPage extends Component {
 					onCancel={this.hideDateTimePicker}
 					mode="date"
 					titleIOS="Select deadline" />
+
+				{this.state.showKeyboardSpacer && <KeyboardSpacer />}
 			</Container>
 		);
 	}
