@@ -30,7 +30,7 @@ import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-
 
 import { getCreatedOn, getDateTime, getKey } from '../helper/Collection';
 import { add, update, deleteOne } from '../helper/Database';
-import { BLOCK_BUTTONS, INLINE_BUTTONS, TASK_TYPE, NOTE_TYPE } from '../helper/Constant';
+import { BLOCK_BUTTONS, INLINE_BUTTONS, NOTE_TYPE } from '../helper/Constant';
 import { PRICOLOR } from '../helper/Constant'
 import { Type } from '../enum/Type';
 import Store from '../store/Store';
@@ -52,7 +52,7 @@ class Edit extends Component {
 
 		this.state = {
 			item: null,
-			itemType: Store.title,
+			itemType: 'Task',//Store.title,
 			html: '',
 			text: '',
 			title: getCreatedOn(getDateTime()),
@@ -60,7 +60,7 @@ class Edit extends Component {
 			datePickerOpen: false,
 			editorState: this.setEditorSate('Loading...'),
 
-			taskType: TASK_TYPE[0],
+			taskType: NOTE_TYPE[0],
 			noteTag: NOTE_TYPE[0],
 			endsIn: 'Deadline not specified.',
 		};
@@ -192,7 +192,7 @@ class Edit extends Component {
 	}
 
 	render() {
-		const _x = this.state.itemType == Type.NOTE ? NOTE_TYPE : TASK_TYPE;
+		const _x = NOTE_TYPE;
 		return (
 			<div>
 				<Toolbar style={{

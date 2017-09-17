@@ -1,8 +1,16 @@
+import { CARROT, PETER_RIVER, WISTERIA, ALIZARIN, TURQUOISE, MIDNIGHT_BLUE, INDIANRED, TEAL, NAVY, PURPLE } from './Constant';
 
 export const getKey = (date) => {
 	return date.replace(/\s/g, '').replace(/:/g, '').replace(/-/g, '');
 }
 
+export const getTextColor = (str) => {
+	if (!str) {
+		return WISTERIA;
+	}
+	const array = [CARROT, PETER_RIVER, WISTERIA, ALIZARIN, TURQUOISE, MIDNIGHT_BLUE, INDIANRED, TEAL, NAVY, PURPLE];
+	return array[str.length % array.length];
+}
 
 export const getDateTime = () => {
 	let today = new Date();

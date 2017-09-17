@@ -15,7 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import AddIcon from 'material-ui/svg-icons/content/add';
 
 import { getAll } from '../helper/Database';
-import { getCreatedOn, getDateTime } from '../helper/Collection'
+import { getCreatedOn, getDateTime, } from '../helper/Collection'
 import { PRICOLOR } from '../helper/Constant'
 import { Type } from '../enum/Type';
 import Store from '../store/Store';
@@ -64,8 +64,9 @@ class Home extends Component {
 	loadItems() {
 		getAll((data) => {
 			if (!data.error) {
-				const tasks = data.result.filter(x => x.type == Type.TASK).slice();
-				const notes = data.result.filter(x => x.type == Type.NOTE).slice();
+				const tasks = data.result.filter(x => x.type == Type.TASK).sort((a, b) => a.modifiedOn > b.modifiedOn).slice();
+				//for now focus on note only
+				const notes = data.result.filter(x => x.type == Type.TASK).sort((a, b) => a.modifiedOn > b.modifiedOn).slice();
 				Fluxify.doAction("updateNotes", notes)
 				Fluxify.doAction("updateTasks", tasks)
 			}
@@ -143,13 +144,12 @@ class Home extends Component {
 					</div>
 
 					<MenuItem onTouchTap={() => this.onMenuItemClick('Note')}>Notes</MenuItem>
-					<MenuItem onTouchTap={() => this.onMenuItemClick('Task')}>Tasks</MenuItem>
 
 					<Divider />
 					<MenuItem onTouchTap={() => this.onMenuItemClick('Share')}>Share this app</MenuItem>
 					<MenuItem onTouchTap={() => this.onMenuItemClick('Rate')}>Rate this app</MenuItem>
 				</Drawer>
-				<div style={{ paddingTop: 80, paddingBottom: 16 }}>
+				<div style={{ paddingTop: 64, paddingBottom: 16 }}>
 					{
 						this.renderView()
 					}
