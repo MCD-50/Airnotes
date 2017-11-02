@@ -35,6 +35,7 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			title: 'Note',
+			appTitle: 'Your Notes',
 			isMounted: false,
 			isDrawerOpen: false
 		};
@@ -122,7 +123,7 @@ class Home extends Component {
 		return (
 			<div>
 				<AppBar
-					title={this.state.title}
+					title={this.state.appTitle}
 					style={{ background: PRICOLOR, position: 'fixed' }}
 					iconElementRight={<IconButton iconClassName="material-icons" tooltip="Settings">settings</IconButton>}
 					onLeftIconButtonTouchTap={this.handleToggle}
