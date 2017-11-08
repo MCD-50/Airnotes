@@ -6,11 +6,8 @@ class Splash extends Component {
 		setTimeout(() => {
 			this.props.history.replace('/home');
 		}, 2500);
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 749893f41caef39b1353cf590659a86998894a25
 	}
 
 	render() {
