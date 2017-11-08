@@ -35,7 +35,7 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			title: 'Note',
-			appTitle: 'Your Notes',
+			appTitle: 'Notes',
 			isMounted: false,
 			isDrawerOpen: false
 		};
@@ -143,9 +143,6 @@ class Home extends Component {
 							fontSize: 24, fontWeight: 400,
 						}}>Airnotes</h1>
 					</div>
-
-					<MenuItem onTouchTap={() => this.onMenuItemClick('Note')}>Notes</MenuItem>
-
 					<Divider />
 					<MenuItem onTouchTap={() => this.onMenuItemClick('Share')}>Share this app</MenuItem>
 					<MenuItem onTouchTap={() => this.onMenuItemClick('Rate')}>Rate this app</MenuItem>

@@ -21,6 +21,8 @@ import Fluxify from 'fluxify';
 import { propTypes, _actions, NOTE_TYPE, TASK_TYPE } from '../helpers/constant.js';
 import { getDateTime } from '../helpers/collection'
 
+const example = `<p class=\"md-block-unstyled\">import React, { Component, PropTypes } from</p><p class=\"md-block-unstyled\">mncdvndfv</p><p class=\"md-block-unstyled\"><strong class=\"md-inline-bold\">dmndsvjkdfnvdfjkbnfdjb</strong></p><ul class=\"md-block-unordered-list-item\"><li><strong class=\"md-inline-bold\">dnjsdvndfvfdbfd</strong></li><li><strong class=\"md-inline-bold\"><span class=\"md-inline-highlight\">bidvb</span></strong></li></ul>","text":"import React, { Component, PropTypes } from\nmncdvndfv\ndmndsvjkdfnvdfjkbnfdjb\ndnjsdvndfvfdbfd\nbidvb`
+
 const _customCSS =
 	`#zss_editor_content {
 				padding-left: 0px;
@@ -46,6 +48,7 @@ const _customCSS =
 				padding-left: 0px;
 				padding-right: 0px;
 			}`;
+
 
 class EditPage extends Component {
 	constructor(params) {
@@ -130,7 +133,7 @@ class EditPage extends Component {
 			this.setState({
 				item: item,
 				itemType: item.type,
-				html: item.html,
+				html: example,
 				text: item.text,
 				title: item.title,
 				noteTag: item.noteTag,

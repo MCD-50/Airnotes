@@ -81,8 +81,7 @@ class MainPage extends Component {
 		if (action.action != 'menu') {
 			const targetTitle = this.state.title == Type.NOTE ? Type.TASK : Type.NOTE;
 			this.setState({ title: targetTitle });
-			Fluxify.doAction('updateTitle', targetTitle);
-
+			//Fluxify.doAction('updateTitle', targetTitle);
 		} else if (action.action == 'menu') {
 			if (mainPageMenuItems[index] === 'Settings') {
 				getData(FONTSIZE)
@@ -114,9 +113,11 @@ class MainPage extends Component {
 						rowMap[`${secId}${rowId}`].closeRow();
 						items.splice(rowId, 1);
 						if (title == Type.TASK) {
-							Fluxify.doAction("updateTasks", items)
+							this.setDataToDatabase()
+							//Fluxify.doAction("updateTasks", items)
 						} else {
-							Fluxify.doAction("updateNotes", items)
+							this.setDataToDatabase()
+							//Fluxify.doAction("updateNotes", items)
 						}
 						Toast.show('Note deleted.');
 					});
@@ -134,14 +135,14 @@ class MainPage extends Component {
 		const { title, notes, tasks } = this.state;
 		if (title == Type.NOTE && notes.length < 1) {
 			return (
-				<Text style={[styles.main_page_description_text, { fontSize: 15, marginLeft: 10, marginRight: 10, marginTop: 5, marginBottom: 5 }]}>
-					Its empty here. Add a few notes to get started.
+				<Text style={[styles.main_page_description_text, { fontSize: 16, marginLeft: 10, marginRight: 10, marginTop: 5, marginBottom: 5 }]}>
+					It's empty in here, try creating a new note.
 				</Text>
 			);
 		} else if (title == Type.TASK && tasks.length < 1) {
 			return (
 				<Text style={[styles.main_page_description_text, { fontSize: 15, marginLeft: 10, marginRight: 10, marginTop: 5, marginBottom: 5 }]}>
-					Its empty here. Add a few tasks to get started.
+					It's empty in here, try creating a new task.
 				</Text>
 			);
 		} else {
