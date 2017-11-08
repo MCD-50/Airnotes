@@ -146,7 +146,6 @@ class EditPage extends Component {
 		this.removeBackEvent();
 	}
 
-
 	shouldComponentUpdate(nextProps, nextState) {
 		if (this.props != nextProps) {
 			setTimeout(() => this.setState({ showKeyboardSpacer: nextProps.appState === 'initial' }), 10);

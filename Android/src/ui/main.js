@@ -45,29 +45,17 @@ class MainPage extends Component {
 
 	componentDidMount() {
 		this.setState({ title: Store.title });
-		Store.on('change:notes', (notes) => {
-			this.setState({
-				notesDataSource: ds.cloneWithRows(notes.slice()),
-				notes: notes.slice()
-			});
-		});
-
-		Store.on('change:tasks', (tasks) => {
-			this.setState({
-				tasksDataSource: ds.cloneWithRows(tasks.slice()),
-				tasks: tasks.slice(),
-			});
-		});
 		this.setDataToDatabase();
 
 	}
 
 	setDataToDatabase() {
 		DatabaseHelper.getAllItems((result) => {
-			const tasks = result.filter(x => x.type == Type.TASK).slice();
 			const notes = result.filter(x => x.type == Type.NOTE).slice();
-			Fluxify.doAction("updateNotes", notes)
-			Fluxify.doAction("updateTasks", tasks)
+			this.setState({
+				notesDataSource: ds.cloneWithRows(notes.slice()),
+				notes: notes.slice()
+			});
 		})
 	}
 
@@ -169,7 +157,7 @@ class MainPage extends Component {
 					<Text style={styles.main_page_header_text}>
 						{item.title}
 					</Text>
-					<Text style={[styles.main_page_description_text, { fontSize: 12, marginBottom:8 }]}>
+					<Text style={[styles.main_page_description_text, { fontSize: 12, marginBottom: 8 }]}>
 						{tag}
 					</Text>
 					<Text style={[styles.main_page_description_text]}>
@@ -184,19 +172,18 @@ class MainPage extends Component {
 	}
 
 	render() {
-		const { title, currentIcon, notesDataSource, tasksDataSource } = this.state;
-		const dataSource = title == Type.NOTE ? notesDataSource : tasksDataSource;
+		const { title, currentIcon, notesDataSource } = this.state;
 		return (
 			<Container>
 				<Toolbar
-					centerElement={title}
-					rightElement={{ actions: [currentIcon], menu: { labels: mainPageMenuItems } }}
+					centerElement={"Notes"}
+					rightElement={{ menu: { labels: mainPageMenuItems } }}
 					onRightElementPress={(action) => this.onRightElementPress(action)} />
 
 				{this.renderEmptyMessage()}
 
 				<SwipeListView
-					dataSource={dataSource}
+					dataSource={notesDataSource}
 					keyboardShouldPersistTaps='always'
 					keyboardDismissMode='interactive'
 					enableEmptySections={true}

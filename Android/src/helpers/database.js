@@ -7,7 +7,6 @@ class DatabaseHelper extends Component {
 			let notes = Object.keys(results.rows).map((key) => {
 				return results.rows[key];
 			})
-			console.log(notes);
 			callback(notes);
 		});
 	}
