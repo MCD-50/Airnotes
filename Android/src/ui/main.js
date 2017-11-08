@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ListView, View, Text, Linking, Alert, TouchableOpacity } from 'react-native';
+import { ListView, View, Text, Linking, Alert, TouchableOpacity, Picker } from 'react-native';
 
 import { Toolbar, FloatingActionButton, Card, Toast, SwipeListView } from 'react-native-material-component'
 import { getData } from '../helpers/appstore.js';

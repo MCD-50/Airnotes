@@ -133,7 +133,7 @@ class EditPage extends Component {
 			this.setState({
 				item: item,
 				itemType: item.type,
-				html: example,
+				html: item.html,
 				text: item.text,
 				title: item.title,
 				noteTag: item.noteTag,
