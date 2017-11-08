@@ -5,7 +5,6 @@ import { Router } from 'react-router-dom'
 
 import routes from './route/Route';
 
-
 import './styles/App.css';
 import './styles/MediumDraft.css';
 import './helper/MediumDraft';
