@@ -3,8 +3,11 @@
 	"version": "0.0.2",
 	"private": true,
 	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+		"start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+		"android-release": "cd android && ./gradlew assembleRelease",
+		"android-release-test": "react-native run-android --configuration=release",
+		"android": "react-native run-android"
 	},
 	"dependencies": {
 		"fluxify": "^0.2.3",
@@ -16,7 +19,7 @@
 		"react-native-material-component": "^1.0.10",
 		"react-native-modal-datetime-picker": "^4.7.0",
 		"react-native-vector-icons": "4.1.1",
-		"react-native-zss-rich-text-editor": "^1.0.2"
+		"react-native-zss-rich-text-editor": "1.0.2"
 	},
 	"devDependencies": {
 		"babel-jest": "18.0.0",
