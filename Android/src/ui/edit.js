@@ -297,6 +297,7 @@ class EditPage extends Component {
 
 	render() {
 		const _x = this.state.itemType == Type.NOTE ? NOTE_TYPE : TASK_TYPE;
+		console.log()
 		return (
 			<Container>
 				<Toolbar
@@ -329,7 +330,7 @@ class EditPage extends Component {
 					mode="date"
 					titleIOS="Select deadline" />
 
-				{this.state.showKeyboardSpacer && <KeyboardSpacer />}
+				{<KeyboardSpacer />}
 			</Container>
 		);
 	}
